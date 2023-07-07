@@ -1,0 +1,104 @@
+import 'package:flutter/material.dart';
+import 'dart:math';
+
+
+class Ficha extends StatelessWidget {
+  final String imageUrl;
+  final String nome;
+  final int matricula;
+  final String escola;
+  final String ano;
+  final String periodo;
+
+  Ficha({
+    required this.imageUrl,
+    required this.nome,
+    required this.matricula,
+    required this.escola,
+    required this.ano,
+    required this.periodo,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Column(
+        children: [
+          Image.network(
+            imageUrl,
+            width: 100,
+            height: 150,
+            fit: BoxFit.cover,
+          ),
+          SizedBox(height: 10),
+          Text('Nome: $nome'),                 
+          Text('Matrícula: $matricula'),
+          Text('Escola: $escola'),
+          Text('Ano: $ano'),
+          Text('Período: $periodo')
+        ],
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  final List<Ficha> fichas = [
+    Ficha(
+      imageUrl: 'https://png.pngtree.com/png-vector/20230131/ourmid/pngtree-panic-stop-and-prevention-concept-png-image_6580170.png',
+      nome: 'Fulaninho de Tal',
+      matricula: Random().nextInt(100000),
+      escola: 'UFSJ',
+      ano: '2023',
+      periodo: '1° Período',
+    ),
+
+    Ficha(
+      imageUrl: 'https://pt.pngtree.com/freepng/depression-child-bullying-at-school-concept_8862788.html',
+      nome: 'Ciclaninha de Sá',
+      matricula: Random().nextInt(100000),
+      escola: 'CEFET-MG',
+      ano: '2021',
+      periodo: '8° Período',
+    ),
+    
+    Ficha(
+      imageUrl: 'https://pt.pngtree.com/freepng/cute-cartoon-happy-girl-find-new-ideas_8973455.html',
+      nome: 'Beutrana',
+      matricula: Random().nextInt(100000),
+      escola: 'UEMG',
+      ano: '2020',
+      periodo: '3° Período',
+    ),
+
+    Ficha(
+      imageUrl: 'https://png.pngtree.com/png-vector/20230131/ourmid/pngtree-panic-stop-and-prevention-concept-png-image_6580170.png',
+      nome: 'Flavinho do pneu',
+      matricula: Random().nextInt(100000),
+      escola: 'UFMG',
+      ano: '2019',
+      periodo: '5° Período',
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Ficha de Alunos'),
+        ),
+        body: ListView.builder(
+          itemCount: fichas.length,
+          itemBuilder: (ctx, index) {
+            return fichas[index];
+          },
+        ),
+      ),
+    );
+  }
+}
